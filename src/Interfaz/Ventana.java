@@ -48,11 +48,14 @@ public class Ventana extends JFrame {
 	JPanel panel_3 = new JPanel();
 	JPanel panel_4 = new JPanel();
 	JPanel panel_5 = new JPanel();
+	JPanel panel_6 = new JPanel();
 	String usoRealSubApp = new String("");
 	String comandoParcial = new String("");
 	JButton btnValidarCampos = new JButton("Validar campos");
 	JButton btnGenerarComando = new JButton("Generar comando");
 	JTextField textField = new JTextField();
+	private JTextField textField_1;
+	private final JButton btnEjecutar = new JButton("Ejecutar");
 
 	/**
 	 * Launch the application.
@@ -178,6 +181,8 @@ public class Ventana extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panel_5.setVisible(true);
 				textField.setText(generarCmd(comboBox));
+				panel_6.setVisible(true);
+				btnEjecutar.setVisible(true);
 			}
 		});
 		
@@ -197,6 +202,24 @@ public class Ventana extends JFrame {
 		textField.setBounds(78, 8, 292, 20);
 		panel_5.add(textField);
 		textField.setColumns(10);
+		
+		panel_6.setBounds(10, 443, 397, 49);
+		contentPane.add(panel_6);
+		panel_6.setLayout(null);
+		panel_6.setVisible(false);
+		
+		JLabel lblDirectorio = new JLabel("Directorio:");
+		lblDirectorio.setBounds(10, 11, 81, 14);
+		panel_6.add(lblDirectorio);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(78, 8, 292, 20);
+		panel_6.add(textField_1);
+		textField_1.setColumns(10);
+		btnEjecutar.setBounds(162, 503, 89, 37);
+		btnEjecutar.setVisible(false);
+		
+		contentPane.add(btnEjecutar);
 	}
 	
 	public void generarPanelSubapps(Aplicacion appElegida){
@@ -229,8 +252,7 @@ public class Ventana extends JFrame {
 		panel_3.removeAll();
 		panel_2.setVisible(true);
 		panel_3.setVisible(true);
-		//usoRealSubApp = subAppElegida.getUsoReal();
-		usoRealSubApp = nombreSubAppElegida;
+		usoRealSubApp = subAppElegida.getUsoReal();
 		List<Parametro> parametros = new ArrayList<Parametro>();
 		parametros = subAppElegida.getParametros();
 		

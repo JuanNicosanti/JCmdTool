@@ -118,7 +118,7 @@
 	<Aplicacion herramienta="git">
 		<SubApp nombre="commit"
 				usoReal="commit">
-			<Parametro 	prefijo="unPrefijo"
+			<Parametro 	prefijo=""
 						contenido="nombre_rama"
 						tipo="obligatorio" />
 			<Parametro  prefijo="-m"
@@ -129,13 +129,13 @@
 		</SubApp>
 		<SubApp nombre="push"
 				usoReal="push">
-			<Parametro 	prefijo="unPrefijo"
+			<Parametro 	prefijo=""
 						contenido="nombre_rama"
 						tipo="obligatorio" />
-			<Parametro 	prefijo="unPrefijo"
+			<Parametro 	prefijo=""
 						contenido="usuario"
 						tipo="obligatorio" />
-			<Parametro 	prefijo="unPrefijo"
+			<Parametro 	prefijo=""
 						contenido="password"
 						tipo="obligatorio"
 						cotaMin="6" 
@@ -143,7 +143,7 @@
 		</SubApp>
 		<SubApp nombre="fetch" />
 		<SubApp nombre="merge">
-			<Parametro	prefijo="unPrefijo"
+			<Parametro	prefijo=""
 						contenido="nombre_rama"
 						tipo="obligatorio" />
 		</SubApp>
@@ -151,7 +151,7 @@
 		<SubApp nombre="add" />
 		<SubApp nombre="revert"
 				usoReal="revert">
-			<Parametro 	prefijo="unPrefijo"
+			<Parametro 	prefijo=""
 						contenido="hash_commit" 
 						tipo="obligatorio" />
 		</SubApp>
