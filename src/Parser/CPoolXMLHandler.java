@@ -70,10 +70,10 @@ public class CPoolXMLHandler extends DefaultHandler {
 			{
 				//tagCompuesto.setNombre(attributes.getQName(i));
 				subAplicacion.setValor(attributes.getValue(i));
-				/*if(attributes.getQName(i+1) == "usoReal") {
+				if(attributes.getQName(i+1) == "usoReal") {
 					subAplicacion.setUsoReal(attributes.getValue(i+1));
 					i++;
-				}*/
+				}
 			}
 		}
 		if(qName == "Aplicacion"){

@@ -42,6 +42,7 @@ public class Ventana extends JFrame {
 	CPoolXMLHandler handler = new CPoolXMLHandler();
 	List<ValidadorParametro> validadores= new ArrayList<ValidadorParametro>();
 	
+	JPanel panel = new JPanel();
 	JPanel panel_1 = new JPanel();
 	JPanel panel_2 = new JPanel();
 	JPanel panel_3 = new JPanel();
@@ -87,7 +88,6 @@ public class Ventana extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
 		panel.setBounds(10, 11, 397, 37);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -145,7 +145,7 @@ public class Ventana extends JFrame {
 		lblSubAplicaciones.setBounds(10, 23, 119, 14);
 		panel_1.add(lblSubAplicaciones);
 		
-		panel_2.setBounds(10, 103, 397, 243);
+		panel_2.setBounds(10, 103, 397, 253);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		panel_2.setVisible(false);
@@ -154,7 +154,7 @@ public class Ventana extends JFrame {
 		lblParametros.setBounds(10, 11, 92, 14);
 		panel_2.add(lblParametros);
 		
-		panel_3.setBounds(10, 36, 377, 196);
+		panel_3.setBounds(10, 36, 387, 217);
 		panel_2.add(panel_3);
 		panel_3.setLayout(null);
 		btnValidarCampos.addActionListener(new ActionListener() {
@@ -171,17 +171,17 @@ public class Ventana extends JFrame {
 			}
 		});
 		
-		btnValidarCampos.setBounds(51, 357, 142, 23);
+		btnValidarCampos.setBounds(50, 367, 142, 23);
 		btnValidarCampos.setVisible(false);
 		contentPane.add(btnValidarCampos);
 		btnGenerarComando.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel_5.setVisible(true);
-				textField.add(generarCmd(comboBox), panel);
+				textField.setText(generarCmd(comboBox));
 			}
 		});
 		
-		btnGenerarComando.setBounds(221, 357, 167, 23);
+		btnGenerarComando.setBounds(221, 367, 167, 23);
 		btnGenerarComando.setVisible(false);
 		contentPane.add(btnGenerarComando);
 		
@@ -229,7 +229,8 @@ public class Ventana extends JFrame {
 		panel_3.removeAll();
 		panel_2.setVisible(true);
 		panel_3.setVisible(true);
-		usoRealSubApp = subAppElegida.getUsoReal();
+		//usoRealSubApp = subAppElegida.getUsoReal();
+		usoRealSubApp = nombreSubAppElegida;
 		List<Parametro> parametros = new ArrayList<Parametro>();
 		parametros = subAppElegida.getParametros();
 		
@@ -240,12 +241,12 @@ public class Ventana extends JFrame {
 			auxS = parametros.get(i).getValor();
 			auxInt = auxInt + 25;
 			JLabel labelAux = new JLabel(auxS);
-			labelAux.setBounds(40, auxInt, 92, 14);
+			labelAux.setBounds(15, auxInt, 145, 14);
 			panel_3.add(labelAux);
 			JTextField texto = new JTextField(20);
-			texto.setBounds(147, auxInt, 204, 20);
+			texto.setBounds(175, auxInt, 204, 20);
 			panel_3.add(texto);
-			//setJTexFieldChanged(texto);
+			setJTexFieldChanged(texto);
 			ValidadorParametro validador = new ValidadorParametro(texto, parametros.get(i));
 			validadores.add(validador);
 		}
@@ -268,5 +269,68 @@ public class Ventana extends JFrame {
 			i++;
 		}
 		return true;
+	}
+
+	private void textoParametros() {
+		this.reiniciarComandoParcial();
+		int i = 0;
+		while(i < validadores.size()){
+			comandoParcial = comandoParcial+" "+(String) validadores.get(i).generarCmd();
+			i++;
+		}
+		//System.out.println("Texto: "+comandoParcial);
+	}
+	
+    private void setJTexFieldChanged(JTextField txt)
+    {
+        DocumentListener documentListener = new DocumentListener() {
+ 
+        @Override
+        public void changedUpdate(DocumentEvent documentEvent) {
+            printIt(documentEvent, txt);
+        }
+ 
+        @Override
+        public void insertUpdate(DocumentEvent documentEvent) {
+            printIt(documentEvent, txt);
+        }
+ 
+        @Override
+        public void removeUpdate(DocumentEvent documentEvent) {
+            printIt(documentEvent, txt);
+        }
+        };
+        txt.getDocument().addDocumentListener(documentListener);
+ 
+    }
+ 
+    private void printIt(DocumentEvent documentEvent, JTextField txt) {
+        DocumentEvent.EventType type = documentEvent.getType();
+ 
+        if (type.equals(DocumentEvent.EventType.CHANGE))
+        {
+        	//refBotonComando.removeAll();
+        	this.textoParametros();
+        	//System.out.println("Change: " + comandoParcial);
+        	this.btnValidarCampos.getAction();
+        }
+        else if (type.equals(DocumentEvent.EventType.INSERT))
+        {
+        	//refBotonComando.removeAll();
+        	this.textoParametros();
+        	//System.out.println("Instert: " + comandoParcial);
+        	this.btnValidarCampos.getAction();
+        }
+        else if (type.equals(DocumentEvent.EventType.REMOVE))
+        {
+        	//refBotonComando.removeAll();
+        	this.textoParametros();
+        	//System.out.println("Remove: " + comandoParcial);
+        	this.btnValidarCampos.getAction();
+        }
+   }
+    
+    public void reiniciarComandoParcial() {
+		comandoParcial = new String("");
 	}
 }
