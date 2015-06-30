@@ -1,0 +1,159 @@
+<Aplicaciones>
+	<Aplicacion herramienta="Elegir aplicacion"/>
+	<Aplicacion herramienta="FFmpeg">
+		<SubApp nombre="Audio from video"
+				usoReal="-i">
+			<Parametro 	prefijo=""
+						contenido="Video Origen: nombre y extensión"
+						tipo="obligatorio" />
+			<Parametro 	prefijo=""
+						contenido="Audio Destino: nombre y extensión"
+						tipo="obligatorio" />
+		</SubApp>
+		<SubApp nombre="Video to video"
+				usoReal="-i">
+			<Parametro 	prefijo=""
+						contenido="Video Origen: nombre y extensión"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-ab"
+						contenido="Audio bitrate"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-ar"
+						contenido="Audio frequency"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-r"
+						contenido="Frames per second"
+						tipo="obligatorio"
+						cotaMin="1" 
+						cotaMax="2"/>
+			<Parametro 	prefijo="-s"
+						contenido="Resolution (ancho x alto) "
+						tipo="obligatorio"/>
+			<Parametro 	prefijo=""
+						contenido="Video Destino: nombre y extensión"
+						tipo="obligatorio"/>																														
+		</SubApp>
+		<SubApp nombre="Audio/Video cutter"
+				usoReal="-i">
+			<Parametro 	prefijo=""
+						contenido="A/V Origen: nombre y extensión"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-t"
+						contenido="Duracion deseada (segundos)"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-ss"
+						contenido="Offset (segundos)"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo=""
+						contenido="A/V Destino: nombre y extensión"
+						tipo="obligatorio"/>																														
+		</SubApp>
+		<SubApp nombre="Mute video"
+				usoReal="-i">
+			<Parametro 	prefijo=""
+						contenido="Video Origen: nombre y extensión"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-an"
+						contenido="Video Destino: nombre y extensión"
+						tipo="obligatorio"/>																													
+		</SubApp>
+		<SubApp nombre="Unir video con audio"
+				usoReal="-i">
+			<Parametro 	prefijo=""
+						contenido="Video Mudo: nombre y extensión"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo="-i"
+						contenido="Audio: Origen nombre y extensión"
+						tipo="obligatorio"/>
+			<Parametro 	prefijo=""
+						contenido="Video Final: Origen nombre y extensión"
+						tipo="obligatorio"/>																													
+		</SubApp>
+	</Aplicacion>
+	<Aplicacion herramienta="shutdown">
+		<SubApp nombre="apagado"
+				usoReal="-s">
+			<Parametro 	prefijo="-t"
+						contenido="Segundos apagado"
+						tipo="obligatorio" />
+		</SubApp>
+		<SubApp nombre="cancelar apagado"
+				usoReal="-a">
+		</SubApp>
+	</Aplicacion>
+	<Aplicacion herramienta="exiftool">
+		<SubApp nombre="Ver Metadata"
+				usoReal="">
+			<Parametro 	prefijo=""
+						contenido="Imagen y extensión"
+						tipo="obligatorio" />
+		</SubApp>
+		<SubApp nombre="Borrar Metadata"
+				usoReal="-all=">
+			<Parametro 	prefijo=""
+						contenido="Imagen y extensión"
+						tipo="obligatorio" />
+		</SubApp>
+	</Aplicacion>
+	<Aplicacion herramienta="virtualdub">
+		<SubApp nombre="virtualdubSub1"
+				usoReal="unUsoReal">
+			<Parametro 	prefijo="unPrefijo"
+						contenido="virtualdubParam1"
+						tipo="obligatorio" />
+			<Parametro 	prefijo="unPrefijo"
+						contenido="virtualdubParam2"
+						tipo="obligatorio" />
+		</SubApp>
+		<SubApp nombre="virtualdubSub2"
+				usoReal="unUsoReal">
+			<Parametro 	prefijo="unPrefijo"
+						contenido="virtualdubParam3"
+						tipo="obligatorio" />
+			<Parametro 	prefijo="unPrefijo"
+						contenido="virtualdubParam4"
+						tipo="obligatorio" />
+		</SubApp>
+	</Aplicacion>
+	<Aplicacion herramienta="git">
+		<SubApp nombre="commit"
+				usoReal="commit">
+			<Parametro 	prefijo="unPrefijo"
+						contenido="nombre_rama"
+						tipo="obligatorio" />
+			<Parametro  prefijo="-m"
+						contenido="mensaje" 
+						tipo="opcional" 
+						cotaMin="0"
+						cotaMax="250" />
+		</SubApp>
+		<SubApp nombre="push"
+				usoReal="push">
+			<Parametro 	prefijo="unPrefijo"
+						contenido="nombre_rama"
+						tipo="obligatorio" />
+			<Parametro 	prefijo="unPrefijo"
+						contenido="usuario"
+						tipo="obligatorio" />
+			<Parametro 	prefijo="unPrefijo"
+						contenido="password"
+						tipo="obligatorio"
+						cotaMin="6" 
+						cotaMax="12" />
+		</SubApp>
+		<SubApp nombre="fetch" />
+		<SubApp nombre="merge">
+			<Parametro	prefijo="unPrefijo"
+						contenido="nombre_rama"
+						tipo="obligatorio" />
+		</SubApp>
+		<SubApp nombre="pull" />
+		<SubApp nombre="add" />
+		<SubApp nombre="revert"
+				usoReal="revert">
+			<Parametro 	prefijo="unPrefijo"
+						contenido="hash_commit" 
+						tipo="obligatorio" />
+		</SubApp>
+	</Aplicacion>
+</Aplicaciones>
